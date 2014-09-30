@@ -1,0 +1,45 @@
+<head>
+<title>PUSH AJAX DEMO USING DWR</title>
+<script type='text/javascript' src='../dwr/engine.js'></script>
+<script type='text/javascript' src='../dwr/interface/DemoVoter.js'></script>
+<script type='text/javascript' src='../dwr/util.js'></script>
+
+<script language="javascript">
+   function onloadmethod() {
+      dwr.engine.setActiveReverseAjax(true);
+      DemoVoter.callReverseAjax();
+   }
+</script>
+
+<style>
+div {
+	font-family:Verdana;
+	font-size:12pt;
+}
+li {
+	cursor:pointer;
+}
+.button {
+	font-family:Verdana;
+	font-size:12pt;
+}
+</style>
+</head>
+<body onload="onloadmethod()">
+<div id="div1"></div>
+<div style="margin-top:10px">
+<table><tr><td style="width:40px;border-top:1px dotted #000"></td><td style="width:400px;border-top:1px dotted #000"><span id="selectedName"></span></td><td style="width:100px;border-top:1px dotted #000" align="center"><input class="button" type="button" value="Vote" onclick="votePlayer()"></td></tr></table>
+</div>
+<input type="hidden" id="playerId">
+</body>
+<script>
+function votePlayer() {
+	var p = document.getElementById('playerId').value;
+	if ( p != "" ) DemoVoter.callVote(p);
+}
+function selectPlayer(p) {
+	document.getElementById('selectedName').innerHTML = p;
+	document.getElementById('playerId').value = p;
+}
+</script>
+</html>
